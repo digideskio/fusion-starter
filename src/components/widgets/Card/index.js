@@ -51,7 +51,7 @@ import EntypoDotsThreeVertical from 'react-entypo/lib/entypo/DotsThreeVertical';
       - additional classes if needed.
 
     id
-      - set the id attribute of the <ul class="tracker">
+      - set the id
 */
 
 const Card = (props) => {

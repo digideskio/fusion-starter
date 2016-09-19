@@ -56,7 +56,6 @@ const customerinfo = {
       alert : true
     },
   ],
-
   "DealerTeam": [
     {
       role: "Sales Rep",
@@ -87,6 +86,10 @@ const customerinfo = {
       assignment: undefined,
     }
   ],
+  "appointments": [
+
+  ]
+
 };
 
 

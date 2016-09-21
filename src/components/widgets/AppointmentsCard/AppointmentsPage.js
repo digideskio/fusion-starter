@@ -21,41 +21,24 @@ const AppointmentsPage = (props) => {
     ...other
   } = props;
   return (
-    <Modal dialogClassName="modal-full" className="appointmentscard__fullpage" {...other}>
+    <Modal dialogClassName="modal-full" className="appointmentscard__fullpage" {...other} autoFocus>
       <Modal.Header closeButton>
         <Modal.Title className="display-4">Kyla Gonzalez</Modal.Title>
       </Modal.Header>
       <Modal.Body className="container">
         <div className="appointmentsPage__content">
-          {data}
-
-          <AppointmentsActivityItem time="" vehicle="" apptType="" apptStatus=""/>
+          {/* data */}
+          <AppointmentsActivityItem appointmentInfo={data[0]} id={1} key={1}/>
+          <AppointmentsActivityItem appointmentInfo={data[1]} id={2} key={2}/>
+          <AppointmentsActivityItem appointmentInfo={data[2]} id={3} key={3}/>
         </div>
       </Modal.Body>
     </Modal>
   );
 };
 AppointmentsPage.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.array
 };
 
-export default AppointmentCard;
+export default AppointmentsPage;
 /* eslint-enable react/no-multi-comp */
-
-
-/*
- time: React.PropTypes.string.isRequired, //
- apptLastUpdatedBy: React.PropTypes.string,
- apptCreatedBy: React.PropTypes.string,
- apptConfirmedBy: React.PropTypes.string,
- vehicle: React.PropTypes.string.isRequired, //
- apptDescription: React.PropTypes.string,
- apptNotes: React.PropTypes.string,
- apptType: React.PropTypes.string.oneOf(['meeting','phone','email','letter','fax','other','service']).isRequired, //
- apptStatus: React.PropTypes.string.oneOf(['Not Confirmed','Confirmed','Past Due','Service Appointment','Missed','Cancelled']).isRequired, //
- isUrgent: React.PropTypes.bool,
- key: React.PropTypes.oneOfType([
- React.PropTypes.string,
- React.PropTypes.number
- ]);
- */

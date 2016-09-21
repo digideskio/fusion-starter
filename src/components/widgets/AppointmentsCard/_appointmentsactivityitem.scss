@@ -1,0 +1,115 @@
+$componentName : '.activityItem'; // namespace for component
+
+#{$componentName} {
+  margin-bottom: 5px;
+  position: relative;
+
+  .panel-body {
+    padding: 10px 20px;
+  }
+
+  &--past-due::before {
+    content: "";
+    width: 6px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: $brand-danger;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+
+  &__icon {
+    padding: 20px 10px;
+    float: left;
+    font-size: 1em;
+    line-height: 1em;
+  }
+
+  &__heading {
+    margin: 0;
+  }
+
+  &__urgent.entypo-svgicon {
+    margin-right: 0.5em;
+    fill: $brand-danger !important;
+  }
+
+  &__meta {
+    float: left;
+    padding-left: ceil(($grid-gutter-width / 2)); // same as columns
+
+    &-item {
+      display: block;
+    }
+  }
+
+  &__status {
+    &.Confirmed {
+      color: $brand-success;
+    }
+
+    &.Not.Confirmed {
+      color: inherit;
+    }
+
+    &.Missed {
+      color: $brand-warning;
+    }
+
+    &.Past.Due,
+    &.Missed {
+      color: $brand-danger;
+    }
+  }
+
+  &__buttons {
+    float: right;
+    padding-left: ceil(($grid-gutter-width / 2)); // same as columns
+    padding-top: 10px;
+  }
+
+  &__notes {
+    display: block;
+  }
+
+  &--closed {
+    .panel-body {
+      height: 76px;
+    }
+
+    #{$componentName}__meta-item + #{$componentName}__meta-item {
+      display: none;
+    }
+
+    #{$componentName}__info {
+      height: 100%;
+      //padding-right: 190px;
+      overflow: hidden;
+      position: relative;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 10px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 1) 100%);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      #{$componentName}__heading,
+      #{$componentName}__description {
+        white-space: nowrap;
+      }
+
+      #{$componentName}__notes {
+        //line-height: 1.5em;
+        //overflow: hidden;
+        height: 1.5em;
+      }
+    }
+  }
+}

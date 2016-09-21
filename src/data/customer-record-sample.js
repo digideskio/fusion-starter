@@ -66,7 +66,7 @@ const customerinfo = {
       assignment: "Diane Huff",
     },
     {
-     role: "BD Agent",
+      role: "BD Agent",
       assignment: "Corey Owen",
     },
     {
@@ -89,27 +89,45 @@ const customerinfo = {
   "Appointments": [
     {
       time: "8/9/16 4:00pm",
-      type: "Meeting",
+      editors: {
+        lastUpdatedBy: 'Aaron Eggleston',
+        createdBy: 'Aaron Eggleston',
+        confirmedBy: 'Aaron Eggleston'
+      },
+      type: "meeting",
+      isUrgent: false,
       status: "Confirmed",
-      vehicleYear: "2017",
-      vehicleMake: "Misubishi",
-      vehicleModel: "Lancer Evolution FE"
+      vehicle: "2017 Misubishi Lancer Evolution FE",
+      description: "Showroom visit",
+      notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate id mauris eget vulputate. Morbi porttitor tellus quis aliquet feugiat. Nullam at faucibus justo. Integer ultricies turpis at metus commodo elementum. Nullam euismod sem in ligula commodo, eu pretium elit tristique. Fusce auctor convallis arcu. Nulla laoreet pretium felis, non hendrerit libero gravida quis. Mauris mollis laoreet justo, nec pretium erat pretium vel. Ut porttitor vulputate nulla, vel eleifend enim sollicitudin ac. Phasellus elit libero, feugiat suscipit magna vitae, dignissim volutpat diam. Etiam scelerisque gravida urna quis tempor."
     },
     {
       time: "8/9/16 5:00pm",
-      type: "Phone",
-      status: "Complete",
-      vehicleYear: "2017",
-      vehicleMake: "Misubishi",
-      vehicleModel: "Lancer Evolution FE"
+      editors: {
+        lastUpdatedBy: 'Aaron Eggleston',
+        createdBy: 'Aaron Eggleston',
+        confirmedBy: 'Aaron Eggleston'
+      },
+      type: "phone",
+      isUrgent: true,
+      status: "Completed",
+      vehicle: "2017 Misubishi Lancer Evolution FE",
+      description: "Showroom visit",
+      notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate id mauris eget vulputate. Morbi porttitor tellus quis aliquet feugiat. Nullam at faucibus justo. Integer ultricies turpis at metus commodo elementum. Nullam euismod sem in ligula commodo, eu pretium elit tristique. Fusce auctor convallis arcu. Nulla laoreet pretium felis, non hendrerit libero gravida quis. Mauris mollis laoreet justo, nec pretium erat pretium vel. Ut porttitor vulputate nulla, vel eleifend enim sollicitudin ac. Phasellus elit libero, feugiat suscipit magna vitae, dignissim volutpat diam. Etiam scelerisque gravida urna quis tempor."
     },
     {
       time: "9/19/16 2:00pm",
-      type: "Email",
+      editors: {
+        lastUpdatedBy: 'Aaron Eggleston',
+        createdBy: 'Aaron Eggleston',
+        confirmedBy: 'Aaron Eggleston'
+      },
+      type: "email",
+      isUrgent: false,
       status: "Not Confirmed",
-      vehicleYear: "2017",
-      vehicleMake: "Misubishi",
-      vehicleModel: "Lancer Evolution FE"
+      vehicle: "2017 Misubishi Lancer Evolution FE",
+      description: "Showroom visit",
+      notes: "Lorem ipsum dolor sit amet. Fusce auctor convallis arcu. Nulla laoreet pretium felis, non hendrerit libero gravida quis. Mauris mollis laoreet justo, nec pretium erat pretium vel. Ut porttitor vulputate nulla, vel eleifend enim sollicitudin ac. Phasellus elit libero, feugiat suscipit magna vitae, dignissim volutpat diam. Etiam scelerisque gravida urna quis tempor."
     }
   ]
 };

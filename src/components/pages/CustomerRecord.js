@@ -7,7 +7,7 @@ import ActionBar from '../widgets/ActionBar';
 import Tasks from '../widgets/Tasks';
 import Card from '../widgets/Card';
 import DealerCard from '../widgets/DealerTeam/DealerCard';
-import AppointmentsCard from '../widgets/AppointmentsCard';
+import AppointmentsCard from '../widgets/AppointmentsCard/AppointmentsCard';
 
 // data
 import customerinfo from '../../data/customer-record-sample';
@@ -88,7 +88,7 @@ const CustomerRecord = () => {
           <Clearfix visibleXsBlock/>
 
           <Col lg={4} md={4} sm={4} xs={6}>
-            <AppointmentsCard />
+            <AppointmentsCard data={customerinfo.Appointments} />
           </Col>
         </Row>
 

@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import {Modal} from 'react-bootstrap';
 import Card from '../Card';
 import AppointmentsPage from './AppointmentsPage';
 // import styles from './styles.scss';
@@ -14,7 +13,7 @@ import AppointmentsPage from './AppointmentsPage';
 
  */
 
-class AppointmentCard extends React.Component {
+class AppointmentsCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +28,7 @@ class AppointmentCard extends React.Component {
   render() {
     return (
       <Card header="Appointments" onClick={this.toggleAppointmentsModal} className="appointmentscard">
+        <h5>{this.props.data[0].time}</h5>
         many appointments.
         such busy.
         so work.
@@ -36,11 +36,14 @@ class AppointmentCard extends React.Component {
         <AppointmentsPage
           show={this.state.appointmentsModal}
           onHide={this.toggleAppointmentsModal}
-          backdrop={false}
-          autoFocus
+          data={this.props.data}
         />
       </Card>
     );
   }
 }
-AppointmentCard.propTypes = {};
+AppointmentsCard.propTypes = {
+  data: React.PropTypes.array.isRequired
+};
+
+export default AppointmentsCard;

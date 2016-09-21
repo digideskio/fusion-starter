@@ -20,7 +20,7 @@ export default {
   entry: {
     // All vendor libraries should be imported in vendor.js. Since vendor libs rarely change, this helps save bandwidth by placing them in a separate file that can be cached separately. Anything not imported in vendor.js will be placed in main.js.
     vendor: './src/vendor.js',
-    main: './src/index.js'
+    main: './src/AppointmentsCard.js'
   },
   target: 'web',
   output: {

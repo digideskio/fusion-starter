@@ -3,25 +3,211 @@ export const schema = {
   "properties": {
     "dealerTeam": {
       "type": "array",
-      "minItems": 20,
-      "maxItems": 20,
+      "minItems": 40,
+      "maxItems": 40,
       "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number",
-            "minimum": 1
+        "enum": [
+          {
+            id: 6,
+            name: "Jordon Cremin",
+            role: "Manager"
           },
-          "name": {
-            "type": "string",
-            "faker": "name.findName"
+          {
+            id: 35,
+            name: "Anahi Bogisich",
+            role: "CSI Agent"
           },
-          "role": {
-            "type": "string",
-            "pattern": "Sales Rep|Manager|BD Agent|CSI Agent|Service Sales Lead|Service Rep|Parts Sales Lead"
+          {
+            id: 12,
+            name: "Amy Mayert",
+            role: "Parts Sales Lead"
+          },
+          {
+            id: 161,
+            name: "Desmond Dach",
+            role: "Sales Rep"
+          },
+          {
+            id: 195,
+            name: "Vince Fisher",
+            role: "Service Rep"
+          },
+          {
+            id: 128,
+            name: "Bret Davis",
+            role: "BD Agent"
+          },
+          {
+            id: 45,
+            name: "Queen Hegmann",
+            role: "Service Rep"
+          },
+          {
+            id: 127,
+            name: "Emma Rogahn",
+            role: "Parts Sales Lead"
+          },
+          {
+            id: 44,
+            name: "Steve Blick",
+            role: "Service Sales Lead"
+          },
+          {
+            id: 105,
+            name: "Idell Streich",
+            role: "Service Rep"
+          },
+          {
+            id: 29,
+            name: "Miss Prince Jacobson",
+            role: "Sales Rep"
+          },
+          {
+            id: 134,
+            name: "Percy Koepp III",
+            role: "Service Rep"
+          },
+          {
+            id: 188,
+            name: "Leslie Kozey",
+            role: "Service Sales Lead"
+          },
+          {
+            id: 106,
+            name: "Rene Schultz",
+            role: "CSI Agent"
+          },
+          {
+            id: 93,
+            name: "Maryse Gleichner",
+            role: "BD Agent"
+          },
+          {
+            id: 102,
+            name: "Bonita Kutch DVM",
+            role: "Parts Sales Lead"
+          },
+          {
+            id: 124,
+            name: "Quinton Bashirian III",
+            role: "Manager"
+          },
+          {
+            id: 1,
+            name: "Lempi Batz",
+            role: "CSI Agent"
+          },
+          {
+            id: 2,
+            name: "Elijah Gorczany",
+            role: "Parts Sales Lead"
+          },
+          {
+            id: 122,
+            name: "Aracely Predovic",
+            role: "Manager"
+          },
+          {
+            id: 175,
+            name: "Adah Stehr",
+            role: "Sales Rep"
+          },
+          {
+            id: 96,
+            name: "Kenton Wisoky",
+            role: "Service Sales Lead"
+          },
+          {
+            id: 52,
+            name: "Clarabelle Mosciski V",
+            role: "CSI Agent"
+          },
+          {
+            id: 66,
+            name: "Anastasia O'Hara",
+            role: "Service Sales Lead"
+          },
+          {
+            id: 35,
+            name: "Dr. Robyn Daugherty",
+            role: "CSI Agent"
+          },
+          {
+            id: 200,
+            name: "Isabel Waelchi",
+            role: "Service Rep"
+          },
+          {
+            id: 175,
+            name: "Scotty Shanahan",
+            role: "Service Sales Lead"
+          },
+          {
+            id: 182,
+            name: "Sid Upton Sr.",
+            role: "Manager"
+          },
+          {
+            id: 150,
+            name: "Alvera Davis",
+            role: "Sales Rep"
+          },
+          {
+            id: 175,
+            name: "Mr. Adrien Crist",
+            role: "Parts Sales Lead"
+          },
+          {
+            id: 46,
+            name: "Osborne Ernser",
+            role: "Split Sales Rep"
+          },
+          {
+            id: 102,
+            name: "Mohamed Rodriguez",
+            role: "BD Agent"
+          },
+          {
+            id: 162,
+            name: "Brionna Shanahan",
+            role: "BD Agent"
+          },
+          {
+            id: 41,
+            name: "Alycia Armstrong",
+            role: "Parts Sales Lead"
+          },
+          {
+            id: 12,
+            name: "Alexane Turcotte",
+            role: "Service Sales Lead"
+          },
+          {
+            id: 32,
+            name: "Kayla Zieme",
+            role: "Sales Rep"
+          },
+          {
+            id: 180,
+            name: "Enos Medhurst",
+            role: "Manager"
+          },
+          {
+            id: 188,
+            name: "Buddy Adams",
+            role: "Service Rep"
+          },
+          {
+            id: 40,
+            name: "Godfrey Pagac",
+            role: "CSI Agent"
+          },
+          {
+            id: 136,
+            name: "Merritt Baumbach",
+            role: "BD Agent"
           }
-        },
-        "required": ['id', 'name', 'role']
+        ]
       }
     },
     "customer": {
@@ -162,43 +348,43 @@ export const schema = {
           "properties": {
             "salesRepId": {
               "type": "number",
-              "minimum": 1,
-              "maximum": 8
+              "minimum": 195,
+              "maximum": 195
             },
             "splitSalesRepId": {
               "type": "number",
-              "minimum": 1,
-              "maximum": 8
+              "minimum": 46,
+              "maximum": 46
             },
             "managerId": {
               "type": "number",
-              "minimum": 1,
-              "maximum": 8
+              "minimum": 124,
+              "maximum": 124
             },
             "bdAgentId": {
               "type": "number",
-              "minimum": 1,
-              "maximum": 8
+              "minimum": 93,
+              "maximum": 93
             },
             "csiAgentId": {
               "type": "number",
-              "minimum": 1,
-              "maximum": 8
+              "minimum": 35,
+              "maximum": 35
             },
             "serviceSalesLeadId": {
               "type": "number",
-              "minimum": 1,
-              "maximum": 8
+              "minimum": 12,
+              "maximum": 12
             },
             "serviceRepId": {
               "type": "number",
-              "minimum": 1,
-              "maximum": 8
+              "minimum": 188,
+              "maximum": 188
             },
-            "partsLeadId": {
+            "partsSalesLeadId": {
               "type": "number",
-              "minimum": 1,
-              "maximum": 8
+              "minimum": 41,
+              "maximum": 41
             },
           }
         },

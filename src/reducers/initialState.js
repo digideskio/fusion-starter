@@ -3,8 +3,8 @@
 // of our entire store.
 export default {
   ajaxCallsInProgress: 0,
-  loadingIndicatorStatus: {
-    percent: -1,
-    intervalTime: 200
+  dealerTeam: [],
+  customer: {
+    tasks: []
   }
 };

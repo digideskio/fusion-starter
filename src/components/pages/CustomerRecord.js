@@ -1,94 +1,43 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { Grid, Col, Row, Clearfix } from 'react-bootstrap';
 import { Affix } from 'react-overlays';
 
 import CustomerProfile from '../widgets/CustomerProfile';
 import ActionBar from '../widgets/ActionBar';
 import Tasks from '../widgets/Tasks';
-import Card from '../widgets/Card';
-import DealerCard from '../widgets/DealerTeam/DealerCard';
+
+import DealerCard from '../widgets/DealerCard/DealerCard';
 import AppointmentsCard from '../widgets/AppointmentsCard/AppointmentsCard';
 
-// data
-import customerinfo from '../../data/customer-record-sample';
-const cardtestdata = [
-  {
-    label: 'AdditionalAction 1',
-    disabled: false,
-    divider: false,
-    header: false,
-  },
-  {
-    label: 'AdditionalAction 2',
-    disabled: false,
-    divider: false,
-    header: false,
-  }
-  ,
-  {
-    label: 'External Link Example',
-    disabled: false,
-    divider: false,
-    header: false,
-    href: 'http://google.com',
-  }
-];
-
-const CustomerRecord = () => {
+const CustomerRecord = ({customer, dealerTeam}) => {
   return(
     <Grid className="customerrecord customerrecord__page">
 
       <Affix viewportOffsetTop={0} affixClassName="customerrecord__head--fixed customerprofile--collapsed">
         <div className="customerrecord__head m-b-md">
-          <CustomerProfile
-            photo={customerinfo.photo}
-            nameFirst={customerinfo.name.first}
-            nameLast={customerinfo.name.last}
-            phone={customerinfo.phone}
-            email={customerinfo.email}
-            address1={customerinfo.address.street}
-            address2=""
-            city={customerinfo.address.city}
-            state={customerinfo.address.state}
-            postal={customerinfo.address.postal}
-            ebr={customerinfo.ebr.ebr}
-            ebr_expressConsent={customerinfo.ebr.expressConsent}
-            memo={customerinfo.memo}
-          />
+          <CustomerProfile customer={customer} />
           <ActionBar/>
         </div>
       </Affix>
 
       <Col sm={12} md={12} lg={12}>
         {/* Tasks */}
-        <Tasks tasks={customerinfo.tasks} className="customerrecord__tasks m-b-md" />
+        <Tasks tasks={customer.tasks} className="customerrecord__tasks m-b-md" />
 
         {/* Cards */}
         <Row className="customerrecord__cards m-b-md">
           <Col lg={4} md={4} sm={4} xs={6}>
-
-            <Card header="Appointments (2)" actionDropdown={cardtestdata}>
-              <p>
-                <span>8/9/16, 4:00pm</span><br/>
-                <span>Phone Call</span><br/>
-                <span>Confirmed</span>
-              </p>
-              <p>
-                <span>2017 Mitsubishi</span>
-                <span>Lancer Evolution FE</span>
-              </p>
-            </Card>
-
+            <AppointmentsCard appointments={customer.appointments}/>
           </Col>
 
           <Col lg={4} md={4} sm={4} xs={6}>
-            <DealerCard dealerlist={customerinfo.DealerTeam}/>
+            { /* <DealerCard dealerTeam={dealerTeam} teamRole="salesperson"/> */ }
           </Col>
 
           <Clearfix visibleXsBlock/>
 
           <Col lg={4} md={4} sm={4} xs={6}>
-            <AppointmentsCard data={customerinfo.Appointments} />
+            <AppointmentsCard/>
           </Col>
         </Row>
 
@@ -98,6 +47,27 @@ const CustomerRecord = () => {
       </Col>
     </Grid>
   );
+};
+
+CustomerRecord.propTypes = {
+  customer: PropTypes.shape({
+    photo: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    phone: PropTypes.string,
+    email: PropTypes.string,
+    address: PropTypes.shape({
+      address1: PropTypes.string,
+      address2: PropTypes.string,
+      city: PropTypes.string,
+      state: PropTypes.string,
+      postal: PropTypes.string
+    }),
+    ebr: PropTypes.bool,
+    ebrExpressConsent: PropTypes.bool,
+    memo: PropTypes.string
+  }),
+  dealerTeam: PropTypes.array
 };
 
 export default CustomerRecord;

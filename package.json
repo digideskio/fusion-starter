@@ -17,7 +17,7 @@
     "remove-demo": "babel-node buildTools/removeDemo.js",
     "start-message": "babel-node buildTools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
-    "start": "npm-run-all --parallel test:watch open:src lint:watch",
+    "start": "npm-run-all --parallel test:watch open:src start-mockapi lint:watch",
     "open:src": "babel-node buildTools/srcServer.js",
     "open:dist": "babel-node buildTools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
@@ -32,7 +32,10 @@
     "open:cover": "npm run test:cover && open coverage/index.html",
     "predeploy": "npm run prebuild && babel-node buildTools/build.js",
     "deploy": "firebase deploy --project customer-record",
-    "preversion": "npm run deploy"
+    "preversion": "npm run deploy",
+    "prestart-mockapi": "npm run generate-mock-data",
+    "start-mockapi": "json-server --watch src/api/db.json --port 3002",
+    "generate-mock-data": "babel-node buildTools/generateMockData"
   },
   "dependencies": {
     "axios": "0.13.1",
@@ -92,6 +95,8 @@
     "html-webpack-plugin": "2.22.0",
     "isparta": "4.0.0",
     "jsdom": "9.4.1",
+    "json-schema-faker": "0.3.6",
+    "json-server": "0.8.21",
     "mocha": "3.0.2",
     "node-sass": "3.8.0",
     "npm-install-webpack-plugin": "4.0.4",

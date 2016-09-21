@@ -41,3 +41,6 @@ dist
 #Windows
 Thumbs.db
 desktop.ini
+
+#mock db
+db.json

@@ -18,9 +18,9 @@ import { Media, Row, Col, Image, Button, Modal } from 'react-bootstrap';
 
     photo (string)
       - a URL/path to profile pick.
-    nameFirst (string) - required
+    firstName (string) - required
       - customer's first name
-    nameLast (string) - required
+    lastName (string) - required
       - customer's last name
     phone (string || number)
       - phone number.  Currently accepts strings or numbers, will output exactly as input (no formatting built-in)
@@ -35,7 +35,7 @@ import { Media, Row, Col, Image, Button, Modal } from 'react-bootstrap';
     postal (number)
     ebr (bool)
       - CASL, Set up for EBR (yes/no)
-    ebr_expressConsent (bool)
+    ebrExpressConsent (bool)
       - CASL, customer allows marketing
     memo (string)
       - memo/notes about customer
@@ -48,55 +48,43 @@ class CustomerProfile extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      nameeditShow: false,
-      memoeditShow: false,
-      memoviewShow: false
+      nameEditShow: false,
+      memoEditShow: false,
+      memoViewShow: false
     };
-    this.openNameedit = this.openNameedit.bind(this);
-    this.closeNameedit = this.closeNameedit.bind(this);
-    this.openMemoedit = this.openMemoedit.bind(this);
-    this.closeMemoedit = this.closeMemoedit.bind(this);
-    this.openMemoview = this.openMemoview.bind(this);
-    this.closeMemoview = this.closeMemoview.bind(this);
   }
-  openNameedit(){
-    this.setState({ nameeditShow: true });
+
+  toggleNameEdit = () => {
+    this.setState({ nameEditShow: !this.state.nameEditShow });
   }
-  closeNameedit(){
-    this.setState({ nameeditShow: false });
+
+  toggleMemoEdit = () =>{
+    this.setState({ memoEditShow: !this.state.memoEditShow });
   }
-  openMemoedit(){
-    this.setState({ memoeditShow: true });
-  }
-  closeMemoedit(){
-    this.setState({ memoeditShow: false });
-  }
-  openMemoview(){
-    this.setState({ memoviewShow: true });
-  }
-  closeMemoview(){
-    this.setState({ memoviewShow: false });
+
+  toggleMemoView = () =>{
+    this.setState({ memoViewShow: !this.state.memoViewShow });
   }
 
   render(){
+    const {customer} = this.props;
+    const address = customer.address;
     return (
         <div className="customerprofile">
           <Media className="customerprofile__media">
             <Media.Left className="customerprofile__photo">
-              <Image className="customerprofile__img" src={this.props.photo} alt="CUSTOMERNAME" />
+              <Image className="customerprofile__img" src={customer.photo} alt={customer.firstName + " " + customer.lastName} />
             </Media.Left>
             <Media.Body>
-              <Media.Heading className="customerprofile__heading">{this.props.nameFirst+' '+this.props.nameLast} <Button className="customerprofile__edit-link" bsStyle="link" onClick={this.openNameedit}>Edit</Button></Media.Heading>
+              <Media.Heading className="customerprofile__heading">{customer.firstName+' '+customer.lastName} <Button className="customerprofile__edit-link" bsStyle="link" onClick={this.toggleNameEdit}>Edit</Button></Media.Heading>
               <Row className="customerprofile__info">
                 <Col lg={3} md={6} sm={6} xs={6} componentClass="ul" className="customerprofile__contactinfo">
-                  <li>{this.props.phone}</li>
-                  <li>{this.props.email}</li>
-                  <li>{this.props.address1}</li>
-                  { (this.props.address2 && this.props.address2 !== "") ?
-                  <li>{this.props.address2}</li>
-                  : null }
-                  <li>{this.props.city+', '+this.props.state+' '+this.props.postal}</li>
-                  <li><small><span>EBR: {(this.props.ebr)?'YES':'NO'}</span> <span style={{'marginLeft':'1em'}}>Express Consent: {(this.props.ebr_expressConsent)?'YES':'NO'}</span></small></li>
+                  <li>{customer.phone}</li>
+                  <li>{customer.email}</li>
+                  <li>{address.street}</li>
+                  { address.secondaryAddress && <li>{address.secondaryAddress}</li> }
+                  <li>{address.city+', '+address.state+' '+address.postal}</li>
+                  <li><small><span>EBR: {(customer.ebr)?'YES':'NO'}</span> <span style={{'marginLeft':'1em'}}>Express Consent: {(customer.ebrExpressConsent)?'YES':'NO'}</span></small></li>
                 </Col>
                 <Col lg={9} md={6} sm={6} xs={6} className="customerprofile__memo">
                   <h5 className="customerprofile__memo-heading m-t-0">Customer Memo</h5>
@@ -106,21 +94,21 @@ class CustomerProfile extends React.Component {
                       Suggest strings, then utility function to convert line breaks (\n) into paragraphs (or line breaks!).
                       Any other formatting issues?
                     */}
-                    <p>{this.props.memo}</p>
+                    <p>{customer.memo}</p>
                   </div>
                   {/*
                     <ButtonToolbar>
-                      <Button className="customerprofile__edit-link" bsStyle="link" onClick={this.openMemoview}>View</Button>
-                      <Button className="customerprofile__edit-link" bsStyle="link" onClick={this.openMemoedit}>Edit</Button>
+                      <Button className="customerprofile__edit-link" bsStyle="link" onClick={this.toggleMemoView}>View</Button>
+                      <Button className="customerprofile__edit-link" bsStyle="link" onClick={this.toggleMemoEdit}>Edit</Button>
                     </ButtonToolbar>
                   */}
-                  <a className="customerprofile__edit-link" onClick={this.openMemoview} href="#">View</a>{' '}
-                  <a className="customerprofile__edit-link" onClick={this.openMemoedit} href="#">Edit</a>
+                  <a className="customerprofile__edit-link" onClick={this.toggleMemoView} href="#">View</a>{' '}
+                  <a className="customerprofile__edit-link" onClick={this.toggleMemoEdit} href="#">Edit</a>
                 </Col>
               </Row>
-              <CustomerNameEditModal show={this.state.nameeditShow} onHide={this.closeNameedit} content={[this.props.nameFirst, this.props.nameLast]}/>
-              <CustomerMemoEditModal show={this.state.memoeditShow} onHide={this.closeMemoedit} content={this.props.memo}/>
-              <CustomerMemoViewModal show={this.state.memoviewShow} onHide={this.closeMemoview} content={this.props.memo}/>
+              <CustomerNameEditModal show={this.state.nameEditShow} onHide={this.toggleNameEdit} content={[customer.firstName, customer.lastName]}/>
+              <CustomerMemoEditModal show={this.state.memoEditShow} onHide={this.toggleMemoEdit} content={customer.memo}/>
+              <CustomerMemoViewModal show={this.state.memoViewShow} onHide={this.toggleMemoView} content={customer.memo}/>
             </Media.Body>
           </Media>
         </div>
@@ -129,22 +117,24 @@ class CustomerProfile extends React.Component {
 }
 
 CustomerProfile.propTypes = {
-  photo: PropTypes.string,
-  nameFirst: PropTypes.string.isRequired,
-  nameLast: PropTypes.string.isRequired,
-  phone: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  email: PropTypes.string,
-  address1: PropTypes.string,
-  address2: PropTypes.string,
-  city: PropTypes.string,
-  state: PropTypes.string,
-  postal: PropTypes.number,
-  ebr: PropTypes.bool,
-  ebr_expressConsent: PropTypes.bool,
-  memo: PropTypes.string
+  customer: PropTypes.shape({
+    photo: PropTypes.string,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    phone: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+    email: PropTypes.string,
+    address1: PropTypes.string,
+    address2: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    postal: PropTypes.number,
+    ebr: PropTypes.bool,
+    ebrExpressConsent: PropTypes.bool,
+    memo: PropTypes.string
+  })
 };
 
 // Modals

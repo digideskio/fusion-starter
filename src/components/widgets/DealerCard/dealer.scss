@@ -1,0 +1,33 @@
+$dealercard : '.dealercard'; // namespace for component
+
+#{$dealercard} {
+  &__role {
+    font-size: 12px;
+    color: grey;
+  }
+
+  &__assignment {
+    font-size: 15px;
+  }
+
+  &__columnstyle {
+    column-count: 2;
+    column-gap: 40px;
+  }
+
+  &__spanstyle {
+    padding-bottom: 8px;
+  }
+
+  &__teammodel {
+    height: 225px;
+  }
+
+  &__managermodel {
+    height: 400px;
+  }
+
+  &__row {
+    display: table-row;
+  }
+}

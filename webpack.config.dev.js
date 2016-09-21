@@ -6,7 +6,7 @@ import StyleLintPlugin from 'stylelint-webpack-plugin';
 
 export default {
   debug: true,
-  devtool: 'cheap-module-eval-source-map', // More info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
+  devtool: 'inline-source-map', // More info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
   noInfo: true, // Set to false to see a list of every file being bundled.
   entry: [
     'eventsource-polyfill', // Necessary for hot reloading with IE

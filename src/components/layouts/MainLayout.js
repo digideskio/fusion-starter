@@ -1,15 +1,26 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import Loading from '../widgets/Loading';
+import CustomerRecord from '../pages/CustomerRecord';
 
-const MainLayout = ({children}) => {
+const MainLayout = ({customer, dealerTeam}) => {
   return (
     <div className='main-layout'>
-      {children}
+      { customer.id ? <CustomerRecord customer={customer} dealerTeam={dealerTeam} /> : <Loading/> }
     </div>
   );
 };
 
 MainLayout.propTypes = {
-  children: PropTypes.element
+  customer: PropTypes.object.isRequired,
+  dealerTeam: PropTypes.array.isRequired
 };
 
-export default MainLayout;
+function mapStateToProps(state) {
+  return {
+    customer: state.customer,
+    dealerTeam: state.dealerTeam
+  };
+}
+
+export default connect(mapStateToProps)(MainLayout);

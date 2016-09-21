@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
-import loadingIndicatorStatus from './loadingIndicatorReducer';
 import loadingStatus from './loadingStatusReducer';
+import customer from './customerReducer';
+import dealerTeam from './dealerTeamReducer';
 
 // Note that I chose a shorter name above when importing reducers.
 // This keeps the calls to these reducers in our container components
@@ -9,7 +10,8 @@ import loadingStatus from './loadingStatusReducer';
 // and value match)
 const rootReducer = combineReducers({
   loadingStatus,
-  loadingIndicatorStatus
+  customer,
+  dealerTeam
 });
 
 export default rootReducer;

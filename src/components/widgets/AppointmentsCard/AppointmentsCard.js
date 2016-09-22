@@ -8,11 +8,40 @@ import AppointmentsPage from './AppointmentsPage';
 
 /*
  AppointmentsCard component.
- Requires: React, React-Bootstrap, React-Entypo, moment is used for parsing and quick format of date/time
+
+ Standard Use: <AppointmentsCard id={unique id} appointments={data} />
+
+ Requires: React, React-Bootstrap, React-Entypo, moment
 
  Parameters:
- [prop] :: [prop type]
- - description
+ id: string
+    -unique id related to component, Required
+
+ appointments: formatted Array
+    - An array of values pertaining to an individual customer's appointments, Required
+   [
+    {
+     id: number
+        - unique id of appointment
+     time: string
+
+     type: string,
+     status: string,
+     vehicle: object
+      {
+           id: number,
+           year: number,
+           make: string,
+           model: string
+       }
+  }]
+
+ appointmentsActions: array,
+    - Gets passed to Card for Dropdown.  This is set to the 'actions' array listed below
+
+  emptyText: string
+    - Text to display if empty, default value is supplied
+
 */
 
 const appointmentIcon = {

@@ -55,9 +55,9 @@ class Tasks extends React.Component {
   taskItems(startIndex, limit) {
     let counter = 1;
     let index = startIndex;
-    let tasks = [];
-    limit = limit || this.props.tasks.length;
-    while (counter <= limit) {
+    const tasks = [];
+    const counterLimit = limit || this.props.tasks.length;
+    while (counter <= counterLimit) {
       const task = this.props.tasks[index];
       if (!task) break;
       tasks.push(<TaskItem

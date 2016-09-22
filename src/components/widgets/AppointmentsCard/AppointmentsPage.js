@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Modal} from 'react-bootstrap';
+import AppointmentsActivityItem from './AppointmentsActivityItem';
 
 // import styles from './dealer.scss';
 
@@ -28,7 +29,11 @@ class AppointmentsPage extends Component {
         </Modal.Header>
         <Modal.Body className="container">
           <div className="appointmentsPage__content">
-            {appointments}
+            Content here.
+            <br/>
+
+            {/* <AppointmentsActivityItem appointment={appointments[1]} id="1" key={1}/> */}
+
           </div>
         </Modal.Body>
       </Modal>
@@ -38,7 +43,8 @@ class AppointmentsPage extends Component {
 
 AppointmentsPage.propTypes = {
   id: PropTypes.string.isRequired,
-  appointments: PropTypes.object,
+  appointments: PropTypes.array,
+  customer: PropTypes.string
 };
 
 AppointmentsPage.defaultProps = {

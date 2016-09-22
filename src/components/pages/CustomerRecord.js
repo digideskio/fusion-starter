@@ -37,7 +37,7 @@ const CustomerRecord = ({customer, dealerTeam}) => {
           <Clearfix visibleXsBlock/>
 
           <Col lg={4} md={4} sm={4} xs={6}>
-            <AppointmentsCard/>
+            { /* <AppointmentsCard appointments={[]}/> */ }
           </Col>
         </Row>
 

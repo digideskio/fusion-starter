@@ -124,11 +124,31 @@ export const schema = {
               },
               "type": {
                 "type": "string",
-                "pattern": "Meeting|Phone|Email"
+                "pattern": "Meeting|Phone|Email|Letter|Fax|Other|Service"
               },
               "status": {
                 "type": "string",
-                "pattern": "Confirmed|Complete|Not Confirmed"
+                "pattern": "Not Confirmed|Confirmed|Past Due|Service Appointment|Missed|Cancelled|Completed"
+              },
+              "isUrgent": {
+                "type": "boolean"
+              },
+              "editors": {
+                "type": "object",
+                "properties": {
+                  "lastUpdatedBy":{
+                    "type": "string",
+                    "faker": "name.findName"
+                  },
+                  "createdBy":{
+                    "type": "string",
+                    "faker": "name.findName"
+                  },
+                  "confirmedBy":{
+                    "type": "string",
+                    "faker": "name.findName"
+                  }
+                }
               },
               "vehicle": {
                 "type": "object",
@@ -152,9 +172,17 @@ export const schema = {
                   }
                 },
                 "required": ['id', 'year', 'make', 'model']
+              },
+              "description": {
+                "type": "string",
+                "faker": "lorem.sentence"
+              },
+              "notes": {
+                "type": "string",
+                "faker": "lorem.paragraph"
               }
             },
-            "required": ['id', 'time', 'type', 'status', 'vehicle']
+            "required": ['id', 'time', 'type', 'status', 'editors', 'vehicle' ]
           }
         },
         "team": {

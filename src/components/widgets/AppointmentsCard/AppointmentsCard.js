@@ -28,7 +28,7 @@ class AppointmentsCard extends React.Component {
   render() {
     return (
       <Card header="Appointments" onClick={this.toggleAppointmentsModal} className="appointmentscard">
-        <h5>{this.props.data[0].time}</h5>
+        <h5>{(this.props.appointments[0].time)? this.props.appointments[0].time : 'no time'}</h5>
         many appointments.
         such busy.
         so work.
@@ -36,14 +36,15 @@ class AppointmentsCard extends React.Component {
         <AppointmentsPage
           show={this.state.appointmentsModal}
           onHide={this.toggleAppointmentsModal}
-          data={this.props.data}
+          appointments={this.props.appointments}
+          id="CR_AppointmentsPage"
         />
       </Card>
     );
   }
 }
 AppointmentsCard.propTypes = {
-  data: React.PropTypes.array.isRequired
+  appointments: React.PropTypes.array.isRequired
 };
 
 export default AppointmentsCard;

@@ -1,6 +1,9 @@
 import React, {Component, PropTypes } from 'react';
+import {Modal} from 'react-bootstrap';
 import { EntypoPhone, EntypoEmail, EntypoMail, EntypoLandline, EntypoCalendar, EntypoBriefcase } from 'react-entypo';
+
 import moment from 'moment';
+import {formatDate} from '../../../utils/formatDate';
 
 import Card from '../Card';
 import AppointmentsPage from './AppointmentsPage';
@@ -36,45 +39,51 @@ import AppointmentsPage from './AppointmentsPage';
        }
   }]
 
- appointmentsActions: array,
-    - Gets passed to Card for Dropdown.  This is set to the 'actions' array listed below
-
   emptyText: string
     - Text to display if empty, default value is supplied
 
 */
 
-const appointmentIcon = {
-  "Meeting": <EntypoBriefcase valign/>,
-  "Phone": <EntypoPhone valign/>,
-  "Other": <EntypoCalendar valign/>,
-  "Fax": <EntypoLandline valign/>,
-  "Letter": <EntypoMail valign/>,
-  "Email": <EntypoEmail valign/>
-};
-
-const statusClass = {
-  "Not Confirmed": "",
-  "Confirmed": "text-success",
-  "Missed": "text-warning",
-  "Past Due": "text-danger",
-  "Complete": ""
-};
-
-const actions = [
-  { label: 'Add Appointments', disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
-  { label: "Confirm", disabled: true, header: false, href: 'http://google.com', onClick: null, onSelect: null },
-  { label: "Complete", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
-  { label: '', divider: true },
-  { label: "Edit", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
-  { label: "Mark as Missed", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
-  { label: '', divider: true },
-  { label: "Cancel", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null }
-];
-
 class AppointmentsCard extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showAppointmentsModal: false
+    };
+
+    this.statusClass = {
+      "Not Confirmed": "",
+      "Confirmed": "text-success",
+      "Missed": "text-warning",
+      "Past Due": "text-danger",
+      "Complete": ""
+    };
+
+    this.appointmentIcon = {
+      "Meeting": <EntypoBriefcase valign/>,
+      "Phone": <EntypoPhone valign/>,
+      "Other": <EntypoCalendar valign/>,
+      "Fax": <EntypoLandline valign/>,
+      "Letter": <EntypoMail valign/>,
+      "Email": <EntypoEmail valign/>
+    };
+
+    this.appointmentsActions = [
+      { label: 'Add Appointments', disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
+      { label: "Confirm", disabled: true, header: false, href: 'http://google.com', onClick: null, onSelect: null },
+      { label: "Complete", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
+      { label: '', divider: true },
+      { label: "Edit", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
+      { label: "Mark as Missed", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
+      { label: '', divider: true },
+      { label: "Cancel", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null }
+    ];
+
+    this.toggleAppointmentsModal = this.toggleAppointmentsModal.bind(this);
+  }
+
+  toggleAppointmentsModal(){
+    this.setState({showAppointmentsModal: !this.state.showAppointmentsModal});
   }
 
   getPrimaryAppointment(){
@@ -83,17 +92,18 @@ class AppointmentsCard extends Component {
     } = this.props;
     const appointment = appointments[0];
 
-    const appointmentStatusClass = statusClass[appointment.status];
-    const appointmentTypeIcon = appointmentIcon[appointment.type];
+    const appointmentStatusClass = this.statusClass[appointment.status];
+    const appointmentTypeIcon = this.appointmentIcon[appointment.type];
 
     const appointmentVehicleYear = appointment.vehicle.year;
     const appointmentVehicleMake = appointment.vehicle.make;
     const appointmentVehicleModel = appointment.vehicle.model;
+
+    console.log(formatDate(appointment.time));
     const appointmentDateTime = moment(Date.parse(appointment.time)).format("M/DD/YY hh:mm a");
 
     return(
       <div>
-
         <div className="appointmentscard__icon">{appointmentTypeIcon}</div>
         <div className="appointmentscard__details">
           <h5 className="appointmentscard__time">{appointmentDateTime}</h5>
@@ -110,25 +120,38 @@ class AppointmentsCard extends Component {
   render() {
     const {
       appointments,
-      appointmentsActions,
-      emptyText
+      emptyText,
+      ...other
     } = this.props;
+
     const appointmentsCount = appointments.length;
     const headerCounter = (appointmentsCount <= 0 ) ? "" : "(" + appointmentsCount + ")";
     const cardContent = (appointmentsCount <= 0 ) ? emptyText : this.getPrimaryAppointment();
 
     return (
-      <span>
+      <div>
         <Card header={"Appointments " + headerCounter}
-            onClick={this.toggleAppointmentsModal}
             className="appointmentscard"
-            actionDropdown={appointmentsActions}
+            actionDropdown={this.appointmentsActions}
         >
           {cardContent}
         </Card>
 
-        <AppointmentsPage id="appointmentsCard-appointmentsPage"/>
-      </span>
+        <Modal dialogClassName="modal-full" className="appointmentscard__fullpage" {...other}
+                 show={this.state.showAppointmentsModal}
+                 onHide={this.toggleAppointmentsModal}
+                 container={this}
+          >
+          <Modal.Header closeButton>
+            <Modal.Title className="display-4">Kyla Gonzalez</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="container">
+            <div className="appointmentsPage__content">
+              <AppointmentsPage id="appointmentsCard-appointmentsPage" appointments={appointments}/>
+            </div>
+          </Modal.Body>
+        </Modal>
+      </div>
     );
   }
 }
@@ -147,12 +170,10 @@ AppointmentsCard.propTypes = {
       model: PropTypes.string
     })
   })).isRequired,
-  appointmentsActions: PropTypes.array,
   emptyText: PropTypes.string
 };
 
 AppointmentsCard.defaultProps = {
-  appointmentsActions: actions,
   emptyText: "Add an appointment"
 };
 

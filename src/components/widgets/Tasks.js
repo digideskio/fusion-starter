@@ -73,7 +73,7 @@ class Tasks extends React.Component {
       index++;
     }
     return tasks;
-  };
+  }
 
   render(){
     const {className, tasks} = this.props;

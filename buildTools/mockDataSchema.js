@@ -34,7 +34,7 @@ export const schema = {
         },
         "photo": {
           "type": "string",
-          "faker": "image.people"
+          "faker": "image.avatar"
         },
         "firstName": {
           "faker": "name.firstName"

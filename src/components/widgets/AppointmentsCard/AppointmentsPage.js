@@ -40,11 +40,8 @@ class AppointmentsPage extends Component {
 }
 
 AppointmentsPage.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired, //
   appointments: PropTypes.array,
-};
-
-AppointmentsPage.defaultProps = {
 };
 
 export default AppointmentsPage;

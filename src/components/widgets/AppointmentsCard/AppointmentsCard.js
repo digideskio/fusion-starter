@@ -5,7 +5,7 @@ import {formatDateTime} from '../../../utils/formatDateTime';
 
 import Card from '../Card';
 import AppointmentsPage from './AppointmentsPage';
-// import styles from './dealer.scss';
+// import styles from './styles.scss';
 
 class AppointmentsCard extends Component {
   constructor(props) {
@@ -90,7 +90,6 @@ class AppointmentsCard extends Component {
     );
   }
 }
-
 AppointmentsCard.propTypes = {
   id: PropTypes.string.isRequired,
   appointments: PropTypes.arrayOf(PropTypes.shape({

@@ -27,7 +27,7 @@ const CustomerRecord = ({customer, dealerTeam}) => {
         {/* Cards */}
         <Row className="customerrecord__cards m-b-md">
           <Col lg={4} md={4} sm={4} xs={6}>
-            <AppointmentsCard id="customerRecord-appointmentsCard" appointments={customer.appointments} />
+            <AppointmentsCard appointments={customer.appointments}/>
           </Col>
 
           <Col lg={4} md={4} sm={4} xs={6}>
@@ -37,7 +37,7 @@ const CustomerRecord = ({customer, dealerTeam}) => {
           <Clearfix visibleXsBlock/>
 
           <Col lg={4} md={4} sm={4} xs={6}>
-            <AppointmentsCard id="customerRecord-appointmentsCard" appointments={customer.appointments}/>
+            { /* <AppointmentsCard appointments={[]}/> */ }
           </Col>
         </Row>
 

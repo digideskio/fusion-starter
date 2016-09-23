@@ -1,7 +1,7 @@
 import React, {Component, PropTypes } from 'react';
 import { EntypoPhone, EntypoEmail, EntypoMail, EntypoLandline, EntypoCalendar, EntypoBriefcase } from 'react-entypo';
 
-import {formatDate} from '../../../utils/formatDate';
+import {formatDateTime} from '../../../utils/formatDateTime';
 
 import Card from '../Card';
 import AppointmentsPage from './AppointmentsPage';
@@ -53,7 +53,7 @@ class AppointmentsCard extends Component {
     const appointmentVehicleMake = appointment.vehicle.make;
     const appointmentVehicleModel = appointment.vehicle.model;
 
-    const appointmentDateTime = formatDate(appointment.time);
+    const appointmentDateTime = formatDateTime(appointment.time);
 
     return(
       <div>

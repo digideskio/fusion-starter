@@ -1,4 +1,4 @@
-export function formatDate(date) {
+export function formatDateTime(date) {
   const backToDateTime = new Date(date);
   const d = backToDateTime.getDate();
   const m = backToDateTime.getMonth() + 1;

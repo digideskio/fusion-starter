@@ -49,10 +49,6 @@ class AppointmentsCard extends Component {
     const appointmentStatusClass = this.statusClass[appointment.status];
     const appointmentTypeIcon = this.appointmentIcon[appointment.type];
 
-    const appointmentVehicleYear = appointment.vehicle.year;
-    const appointmentVehicleMake = appointment.vehicle.make;
-    const appointmentVehicleModel = appointment.vehicle.model;
-
     const appointmentDateTime = formatDateTime(appointment.time);
 
     return(
@@ -62,8 +58,8 @@ class AppointmentsCard extends Component {
           <h5 className="appointmentscard__time">{appointmentDateTime}</h5>
           <div className={"appointmentscard__status " + appointmentStatusClass}>{appointment.status}</div>
           <div className="appointmentscard__vehicle">
-            <div className="appointmentscard__vehicle--makeyear">{appointmentVehicleYear} {appointmentVehicleMake}</div>
-            <div className="appointmentscard__vehicle--model">{appointmentVehicleModel}</div>
+            <div className="appointmentscard__vehicle--makeyear">{appointment.vehicle.year} {appointment.vehicle.make}</div>
+            <div className="appointmentscard__vehicle--model">{appointment.vehicle.model} {appointment.vehicle.trim}</div>
           </div>
         </div>
       </div>
@@ -106,7 +102,8 @@ AppointmentsCard.propTypes = {
       id: PropTypes.number,
       year: PropTypes.number,
       make: PropTypes.string,
-      model: PropTypes.string
+      model: PropTypes.string,
+      trim: PropTypes.string
     })
   })).isRequired,
   emptyText: PropTypes.string

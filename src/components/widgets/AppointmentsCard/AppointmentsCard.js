@@ -4,12 +4,18 @@ import { EntypoPhone, EntypoEmail, EntypoMail, EntypoLandline, EntypoCalendar, E
 import {formatDateTime} from '../../../utils/formatDateTime';
 
 import Card from '../Card';
+import AppointmentsCardContent from './AppointmentsCardContent';
 import AppointmentsModal from './AppointmentsModal';
 // import styles from './styles.scss';
 
 class AppointmentsCard extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      visible: false,
+    };
+
+    this.dropdownConfirmDisabled = (typeof(this.props.appointments[0]) === 'undefined') ? true : false;
 
     this.statusClass = {
       "Not Confirmed": "",
@@ -29,16 +35,21 @@ class AppointmentsCard extends Component {
     };
 
     this.appointmentsActions = [
-      { label: 'Add Appointments', disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
-      { label: "Confirm", disabled: true, header: false, href: 'http://google.com', onClick: null, onSelect: null },
-      { label: "Complete", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
+      { label: 'Add Appointments', disabled: false, header: false, onClick: this.toggleVisibility, onSelect: null },
+      { label: "Confirm", disabled: this.dropdownConfirmDisabled, header: false, onClick: null, onSelect: null },
+      { label: "Complete", disabled: false, header: false, onClick: null, onSelect: null },
       { label: '', divider: true },
-      { label: "Edit", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
-      { label: "Mark as Missed", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null },
+      { label: "Edit", disabled: false, header: false, onClick: this.toggleVisibility, onSelect: null },
+      { label: "Mark as Missed", disabled: false, header: false, onClick: null, onSelect: null },
       { label: '', divider: true },
-      { label: "Cancel", disabled: false, header: false, href: 'http://google.com', onClick: null, onSelect: null }
+      { label: "Cancel", disabled: false, header: false, onClick: null, onSelect: null }
     ];
   }
+
+  toggleVisibility = (event) => {
+    event.preventDefault();
+    this.setState({visible: !this.state.visible});
+  };
 
   getPrimaryAppointment(){
     const {
@@ -52,17 +63,14 @@ class AppointmentsCard extends Component {
     const appointmentDateTime = formatDateTime(appointment.time);
 
     return(
-      <div>
-        <div className="appointmentscard__icon">{appointmentTypeIcon}</div>
-        <div className="appointmentscard__details">
-          <h5 className="appointmentscard__time">{appointmentDateTime}</h5>
-          <div className={"appointmentscard__status " + appointmentStatusClass}>{appointment.status}</div>
-          <div className="appointmentscard__vehicle">
-            <div className="appointmentscard__vehicle--makeyear">{appointment.vehicle.year} {appointment.vehicle.make}</div>
-            <div className="appointmentscard__vehicle--model">{appointment.vehicle.model} {appointment.vehicle.trim}</div>
-          </div>
-        </div>
-      </div>
+      <AppointmentsCardContent id="appointmentsCard-appointmentsCardContent"
+                               appointment={appointment}
+                               appointmentTypeIcon={appointmentTypeIcon}
+                               appointmentDateTime={appointmentDateTime}
+                               appointmentStatusClass={appointmentStatusClass}
+                               visible={this.state.visible}
+                               toggleVisibility={this.toggleVisibility}
+      />
       );
   }
 
@@ -75,8 +83,8 @@ class AppointmentsCard extends Component {
     } = this.props;
 
     const appointmentsCount = appointments.length;
-    const headerCounter = (appointmentsCount <= 0 ) ? "" : "(" + appointmentsCount + ")";
-    const cardContent = (appointmentsCount <= 0 ) ? emptyText : this.getPrimaryAppointment();
+    const headerCounter = (appointmentsCount <= 1) ? "" : "(" + appointmentsCount + ")";
+    const cardContent = (typeof(appointments[0]) === 'undefined') ? emptyText : this.getPrimaryAppointment();
 
     return (
       <div id={id}>
@@ -87,7 +95,13 @@ class AppointmentsCard extends Component {
           {cardContent}
         </Card>
 
-        <AppointmentsModal id="appointmentsCard-appointmentsModal" customerName={customerName} appointments={appointments}/>
+        <AppointmentsModal
+          id="appointmentsCard-appointmentsModal"
+          customerName={customerName}
+          appointments={appointments}
+          visible={this.state.visible}
+          toggleVisibility={this.toggleVisibility}
+        />
       </div>
     );
   }

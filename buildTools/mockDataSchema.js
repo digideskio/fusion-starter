@@ -124,7 +124,7 @@ export const schema = {
               },
               "type": {
                 "type": "string",
-                "pattern": "Meeting|Phone|Email|Letter|Fax|Other|Service"
+                "pattern": "Meeting|Phone|Email|Letter|Fax|Other"
               },
               "status": {
                 "type": "string",

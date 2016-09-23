@@ -1,55 +1,12 @@
-<<<<<<< HEAD
-import React, {PropTypes} from 'react';
-=======
 import React, {Component, PropTypes } from 'react';
 import { EntypoPhone, EntypoEmail, EntypoMail, EntypoLandline, EntypoCalendar, EntypoBriefcase } from 'react-entypo';
 
 import {formatDate} from '../../../utils/formatDate';
 
->>>>>>> 9f4bac2144b4c3c4622617ab39a679c2dd16bb14
 import Card from '../Card';
 import AppointmentsPage from './AppointmentsPage';
 // import styles from './styles.scss';
 
-<<<<<<< HEAD
-/*
- AppointmentsCard component.
- Requires: React, React-Bootstrap, React-Entypo
-
- Parameters:
- [prop] :: [prop type]
- - description
-
- */
-
-class AppointmentsCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      appointmentsModal: false
-    };
-  }
-
-  toggleAppointmentsModal = () => {
-    this.setState({appointmentsModal: !this.state.appointmentsModal});
-  };
-
-  render() {
-    return (
-      <Card header="Appointments" onClick={this.toggleAppointmentsModal} className="appointmentscard">
-        <h5>{(this.props.appointments[0].time)? this.props.appointments[0].time : 'no time'}</h5>
-        many appointments.
-        such busy.
-        so work.
-
-        <AppointmentsPage
-          show={this.state.appointmentsModal}
-          onHide={this.toggleAppointmentsModal}
-          appointments={this.props.appointments}
-          id="CR_AppointmentsPage"
-        />
-      </Card>
-=======
 class AppointmentsCard extends Component {
   constructor(props) {
     super(props);
@@ -134,7 +91,6 @@ class AppointmentsCard extends Component {
 
         <AppointmentsPage id="appointmentsCard-appointmentsPage" appointments={appointments}/>
       </div>
->>>>>>> 9f4bac2144b4c3c4622617ab39a679c2dd16bb14
     );
   }
 }

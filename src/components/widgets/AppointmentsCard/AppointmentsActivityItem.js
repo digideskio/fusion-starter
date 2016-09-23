@@ -8,6 +8,7 @@ import EntypoLandline from 'react-entypo/lib/entypo/Landline';
 import EntypoFlag from 'react-entypo/lib/entypo/Flag';
 import EntypoCalendar from 'react-entypo/lib/entypo/Calendar';
 
+import {formatDateTime} from '../../../utils/formatDateTime';
 
 class AppointmentsActivityItem extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class AppointmentsActivityItem extends Component {
     const historical = (['Missed','Cancelled','Completed'].indexOf(appointment.status) > -1);
     console.log('is historical: '+ historical);
 
-
+    const appointmentTime = formatDateTime(appointment.time);
     return (
       <Panel className={"activityItem" + ((appointment.status === 'Past Due') ? " activityItem--past-due " : "") + ((this.state.activityOpen) ? " activityItem--open" : " activityItem--closed") + ((historical) ? ' activityItem--historical' : '')} onClick={this.openActivity} id={id}>
         <Row>
@@ -62,7 +63,7 @@ class AppointmentsActivityItem extends Component {
             <div className="activityItem__icon">{icon[appointment.type]}</div>
 
             <div className="activityItem__meta">
-              <h5 className="activityItem__heading">{((appointment.isUrgent)?<EntypoFlag className="activityItem__urgent" /> : null)}{appointment.time}</h5>
+              <h5 className="activityItem__heading">{((appointment.isUrgent)?<EntypoFlag className="activityItem__urgent" /> : null)}{appointmentTime}</h5>
               <div className={'activityItem__status' + ((appointment.status)?' '+appointment.status : null)}>{appointment.status}</div>
               <small className="activityItem__meta-list">
                 { (appointment.editors.lastUpdatedBy) ?

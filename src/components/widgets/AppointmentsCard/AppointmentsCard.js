@@ -4,7 +4,7 @@ import { EntypoPhone, EntypoEmail, EntypoMail, EntypoLandline, EntypoCalendar, E
 import {formatDateTime} from '../../../utils/formatDateTime';
 
 import Card from '../Card';
-import AppointmentsPage from './AppointmentsPage';
+import AppointmentsModal from './AppointmentsModal';
 // import styles from './styles.scss';
 
 class AppointmentsCard extends Component {
@@ -68,8 +68,10 @@ class AppointmentsCard extends Component {
 
   render() {
     const {
+      id,
       appointments,
       emptyText,
+      customerName
     } = this.props;
 
     const appointmentsCount = appointments.length;
@@ -77,7 +79,7 @@ class AppointmentsCard extends Component {
     const cardContent = (appointmentsCount <= 0 ) ? emptyText : this.getPrimaryAppointment();
 
     return (
-      <div>
+      <div id={id}>
         <Card header={"Appointments " + headerCounter}
             className="appointmentscard"
             actionDropdown={this.appointmentsActions}
@@ -85,7 +87,7 @@ class AppointmentsCard extends Component {
           {cardContent}
         </Card>
 
-        <AppointmentsPage id="appointmentsCard-appointmentsPage" appointments={appointments}/>
+        <AppointmentsModal id="appointmentsCard-appointmentsModal" customerName={customerName} appointments={appointments}/>
       </div>
     );
   }
@@ -105,7 +107,8 @@ AppointmentsCard.propTypes = {
       trim: PropTypes.string
     })
   })).isRequired,
-  emptyText: PropTypes.string
+  emptyText: PropTypes.string,
+  customerName: PropTypes.string.isRequired
 };
 
 AppointmentsCard.defaultProps = {

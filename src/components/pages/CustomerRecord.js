@@ -27,7 +27,11 @@ const CustomerRecord = ({customer, dealerTeam}) => {
         {/* Cards */}
         <Row className="customerrecord__cards m-b-md">
           <Col lg={4} md={4} sm={4} xs={6}>
-            <AppointmentsCard appointments={customer.appointments}/>
+            <AppointmentsCard
+              id="customer-record-appointments-card"
+              appointments={customer.appointments}
+              customerName={customer.firstName + " " + customer.lastName}
+            />
           </Col>
 
           <Col lg={4} md={4} sm={4} xs={6}>

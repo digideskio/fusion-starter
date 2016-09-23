@@ -169,6 +169,10 @@ export const schema = {
                   "model": {
                     "type": "string",
                     "pattern": "F150|Sierra|Taurus|Maxima|Altima"
+                  },
+                  "trim": {
+                    "type": "string",
+                    "pattern": "Evolution FE|LX|SXT|LTZ|SEL|XLE|"
                   }
                 },
                 "required": ['id', 'year', 'make', 'model']

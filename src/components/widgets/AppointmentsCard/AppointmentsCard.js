@@ -1,7 +1,7 @@
 import React, {Component, PropTypes } from 'react';
 import { EntypoPhone, EntypoEmail, EntypoMail, EntypoLandline, EntypoCalendar, EntypoBriefcase } from 'react-entypo';
 
-import {formatDate} from '../../../utils/formatDate';
+import {formatDateTime} from '../../../utils/formatDateTime';
 
 import Card from '../Card';
 import AppointmentsPage from './AppointmentsPage';
@@ -49,11 +49,7 @@ class AppointmentsCard extends Component {
     const appointmentStatusClass = this.statusClass[appointment.status];
     const appointmentTypeIcon = this.appointmentIcon[appointment.type];
 
-    const appointmentVehicleYear = appointment.vehicle.year;
-    const appointmentVehicleMake = appointment.vehicle.make;
-    const appointmentVehicleModel = appointment.vehicle.model;
-
-    const appointmentDateTime = formatDate(appointment.time);
+    const appointmentDateTime = formatDateTime(appointment.time);
 
     return(
       <div>
@@ -62,8 +58,8 @@ class AppointmentsCard extends Component {
           <h5 className="appointmentscard__time">{appointmentDateTime}</h5>
           <div className={"appointmentscard__status " + appointmentStatusClass}>{appointment.status}</div>
           <div className="appointmentscard__vehicle">
-            <div className="appointmentscard__vehicle--makeyear">{appointmentVehicleYear} {appointmentVehicleMake}</div>
-            <div className="appointmentscard__vehicle--model">{appointmentVehicleModel}</div>
+            <div className="appointmentscard__vehicle--makeyear">{appointment.vehicle.year} {appointment.vehicle.make}</div>
+            <div className="appointmentscard__vehicle--model">{appointment.vehicle.model} {appointment.vehicle.trim}</div>
           </div>
         </div>
       </div>
@@ -95,7 +91,25 @@ class AppointmentsCard extends Component {
   }
 }
 AppointmentsCard.propTypes = {
-  appointments: React.PropTypes.array.isRequired
+  id: PropTypes.string.isRequired,
+  appointments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    time: PropTypes.string,
+    type: PropTypes.string,
+    status: PropTypes.string,
+    vehicle: PropTypes.shape({
+      id: PropTypes.number,
+      year: PropTypes.number,
+      make: PropTypes.string,
+      model: PropTypes.string,
+      trim: PropTypes.string
+    })
+  })).isRequired,
+  emptyText: PropTypes.string
+};
+
+AppointmentsCard.defaultProps = {
+  emptyText: "Add an appointment"
 };
 
 export default AppointmentsCard;

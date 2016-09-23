@@ -31,7 +31,7 @@ class AppointmentsPage extends Component {
         </Modal.Header>
         <Modal.Body className="container">
           <div className="appointmentsPage__content">
-            {appointments}
+            Appointments Page Content
           </div>
         </Modal.Body>
       </Modal>

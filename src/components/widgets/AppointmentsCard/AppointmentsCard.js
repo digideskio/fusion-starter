@@ -1,5 +1,10 @@
 import React, {Component, PropTypes } from 'react';
-import { EntypoPhone, EntypoEmail, EntypoMail, EntypoLandline, EntypoCalendar, EntypoBriefcase } from 'react-entypo';
+import EntypoPhone from 'react-entypo/lib/entypo/Phone';
+import EntypoEmail from 'react-entypo/lib/entypo/Email';
+import EntypoMail from 'react-entypo/lib/entypo/Mail';
+import EntypoLandline from 'react-entypo/lib/entypo/Landline';
+import EntypoCalendar from 'react-entypo/lib/entypo/Calendar';
+import EntypoBriefcase from 'react-entypo/lib/entypo/Briefcase';
 
 import {formatDateTime} from '../../../utils/formatDateTime';
 
@@ -109,12 +114,12 @@ class AppointmentsCard extends Component {
 AppointmentsCard.propTypes = {
   id: PropTypes.string.isRequired,
   appointments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
+    appointmentId: PropTypes.number,
     time: PropTypes.string,
     type: PropTypes.string,
     status: PropTypes.string,
     vehicle: PropTypes.shape({
-      id: PropTypes.number,
+      vehicleId: PropTypes.number,
       year: PropTypes.number,
       make: PropTypes.string,
       model: PropTypes.string,

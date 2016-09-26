@@ -208,7 +208,7 @@ export const schema = {
         ],
         "type": "object",
         "properties": {
-          "id": {
+          "dealerTeamId": {
             "type": "number",
             "minimum": 1
           },
@@ -221,13 +221,13 @@ export const schema = {
             "pattern": "Sales Rep|Manager|BD Agent|CSI Agent|Service Sales Lead|Service Rep|Parts Sales Lead",
           }
         },
-        "required": ['id', 'name', 'role']
+        "required": ['dealerTeamId', 'name', 'role']
       }
     },
     "customer": {
       "type": "object",
       "properties": {
-        "id": {
+        "globalCustomerId": {
           "type": "number",
           "minimum": 1,
           "maximum": 1
@@ -252,6 +252,10 @@ export const schema = {
         "address": {
           "type": "object",
           "properties": {
+            "customerAddressId": {
+              "type": "number",
+              "minimum": 1
+            },
             "street": {
               "faker": "address.streetAddress"
             },
@@ -268,7 +272,7 @@ export const schema = {
               "faker": "address.zipCode"
             }
           },
-          required: ['street', 'city', 'state', 'postal'],
+          "required": ['customerAddressId', 'street', 'city', 'state', 'postal'],
         },
         "ebr": {
           "type": "boolean",
@@ -287,7 +291,7 @@ export const schema = {
           "items": {
             "type": "object",
             "properties": {
-              "id": {
+              "taskId": {
                 "type": "number",
                 "minimum": 1
               },
@@ -304,7 +308,7 @@ export const schema = {
                 "faker": "lorem.sentence"
               }
             },
-            "required": ['id', 'type', 'primaryText', 'secondaryText']
+            "required": ['taskId', 'type', 'primaryText', 'secondaryText']
           }
         },
         "appointments": {
@@ -314,7 +318,7 @@ export const schema = {
           "items": {
             "type": "object",
             "properties": {
-              "id": {
+              "appointmentId": {
                 "type": "number",
                 "minimum": 1
               },
@@ -353,7 +357,7 @@ export const schema = {
               "vehicle": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "vehicleId": {
                     "type": "number",
                     "minimum": 1
                   },
@@ -375,7 +379,7 @@ export const schema = {
                     "pattern": "Evolution FE|LX|SXT|LTZ|SEL|XLE|"
                   }
                 },
-                "required": ['id', 'year', 'make', 'model']
+                "required": ['vehicleId', 'year', 'make', 'model']
               },
               "description": {
                 "type": "string",
@@ -386,7 +390,7 @@ export const schema = {
                 "faker": "lorem.paragraph"
               }
             },
-            "required": ['id', 'time', 'type', 'status', 'editors', 'vehicle']
+            "required": ['appointmentId', 'time', 'type', 'status', 'editors', 'vehicle' ]
           }
         },
         "team": {
@@ -436,7 +440,7 @@ export const schema = {
         },
         "required": ['salesRepId', 'splitSalesRepId', 'managerId', 'bdAgentId', 'csiAgentId', 'serviceSalesLeadId', 'serviceRepId', 'partsLeadId']
       },
-      "required": ['id', 'photo', 'firstName', 'lastName', 'phone', 'email', 'address', 'ebr', 'ebrExpressConsent', 'memo', 'tasks', 'appointments', 'team']
+      "required": ['customerId', 'photo', 'firstName', 'lastName', 'phone', 'email', 'address', 'ebr', 'ebrExpressConsent', 'memo', 'tasks', 'appointments', 'team']
     }
   },
   "required": ['appointments', 'dealerTeam', 'customer']

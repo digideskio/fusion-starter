@@ -1,12 +1,13 @@
 import React, {PropTypes} from 'react';
 import {Modal} from 'react-bootstrap';
 
-const AppointmentsModal = ({customerName, appointments, visible, toggleVisibility}) => {
+const AppointmentsModal = ({id, customerName, appointments, visible, toggleVisibility}) => {
   return(
       <Modal dialogClassName="modal-full"
              className="appointmentscard__fullpage"
              show={visible}
              onHide={toggleVisibility}
+             id={id}
       >
         <Modal.Header closeButton>
           <Modal.Title className="display-4">{customerName}</Modal.Title>

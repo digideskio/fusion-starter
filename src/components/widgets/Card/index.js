@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 import React, {PropTypes} from 'react';
-import {Panel,DropdownButton,MenuItem} from 'react-bootstrap';
-import EntypoDotsThreeVertical from 'react-entypo/lib/entypo/DotsThreeVertical';
+import {Panel} from 'react-bootstrap';
+import CardDropdownMenu from './CardDropdownMenu';
 // import styles from './styles.scss';
 
 /*
@@ -90,76 +90,6 @@ Card.propTypes = {
   })),
   children: React.PropTypes.node
 };
-
-const CardDropdownMenu = (props) => {
-  const menuObj = props.actionDropdown || [];
-  const menuItems = menuObj.map(function(v, key){
-    return(
-      <MenuItem
-        className="card__dropdown-item"
-        key={key}
-        eventKey={key}
-        active={v.active}
-        disabled={v.disabled}
-        divider={v.divider}
-        header={v.header}
-        href={v.href}
-        onClick={v.onClick}
-        onSelect={v.onSelect}
-      >{v.label}</MenuItem>
-    );
-  });
-
-  return (
-    <span>
-    { menuObj.length > 0 ?
-      <div className="card__dropdown">
-        <DropdownButton
-          className="card__dropdown-button"
-          bsStyle="link"
-          title={<EntypoDotsThreeVertical valign/>}
-          noCaret
-          pullRight
-          id="dropdown-card-button"
-        >
-          {menuItems}
-        </DropdownButton>
-      </div>
-      :
-      null
-    }
-    </span>
-  );
-};
-CardDropdownMenu.propTypes = {
-  actionDropdown: PropTypes.array.isRequired
-};
-
-/*
-const CardDropdownMenuWItems = (props) => {
-  return (
-    <div className="card__dropdown pull-right">
-      <DropdownButton id="card__drop" className="card__dropdown-button" bsStyle="link" title={<EntypoDotsThreeVertical valign />} noCaret pullRight>
-        {props.children}
-      </DropdownButton>
-    </div>
-  );
-};
-CardDropdownMenuWItems.propTypes = {
-  children: PropTypes.element
-};
-const CardMenuItem = (props) => {
-  return (
-    <MenuItem {...props}>{props.children}</MenuItem>
-  );
-};
-CardMenuItem.propTypes = {
-  children: React.PropTypes.node
-};
-
-Card.Dropdown = CardDropdownMenuWItems;
-Card.MenuItem = CardMenuItem;
-*/
 
 export default Card;
 /* eslint-enable react/no-multi-comp */

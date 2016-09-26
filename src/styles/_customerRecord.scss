@@ -8,6 +8,10 @@ $customerrecord : '.customerrecord'; // namespace for component
       + div {
         margin-top: 140px;
       }
+
+      @media (max-width: 767px) {
+        width: 100%;
+      }
     }
   }
 

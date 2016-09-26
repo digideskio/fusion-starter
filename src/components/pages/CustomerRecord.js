@@ -14,7 +14,7 @@ const CustomerRecord = ({customer, dealerTeam}) => {
     <Grid className="customerrecord customerrecord__page">
 
       <Affix viewportOffsetTop={0} affixClassName="customerrecord__head--fixed customerprofile--collapsed">
-        <div className="customerrecord__head m-b-md">
+        <div className="customerrecord__head m-b-md container row">
           <CustomerProfile customer={customer} />
           <ActionBar/>
         </div>

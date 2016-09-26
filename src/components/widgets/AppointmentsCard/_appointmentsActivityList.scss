@@ -1,0 +1,20 @@
+$cname : '.activityList'; // namespace for component
+
+#{$cname} {
+  &__header {
+    &-title {
+      float: left;
+    }
+
+    &-button {
+      float: right;
+    }
+  }
+
+  &__list-container--notasks {
+    padding: $panel-body-padding;
+    text-align: center;
+    border: 1px dashed $text-muted;
+    border-radius: $border-radius-base;
+  }
+}

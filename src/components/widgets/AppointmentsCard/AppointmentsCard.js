@@ -1,4 +1,5 @@
 import React, {Component, PropTypes } from 'react';
+
 import EntypoPhone from 'react-entypo/lib/entypo/Phone';
 import EntypoEmail from 'react-entypo/lib/entypo/Email';
 import EntypoMail from 'react-entypo/lib/entypo/Mail';
@@ -56,32 +57,31 @@ class AppointmentsCard extends Component {
     this.setState({visible: !this.state.visible});
   };
 
-  getPrimaryAppointment(){
+  getAppointmentsCardContent(){
     const {
       appointments
     } = this.props;
-    const appointment = appointments[0];
 
+    const appointment = appointments[0];
     const appointmentStatusClass = this.statusClass[appointment.status];
     const appointmentTypeIcon = this.appointmentIcon[appointment.type];
-
     const appointmentDateTime = formatDateTime(appointment.time);
 
     return(
-      <AppointmentsCardContent id="appointmentsCard-appointmentsCardContent"
-                               appointment={appointment}
-                               appointmentTypeIcon={appointmentTypeIcon}
-                               appointmentDateTime={appointmentDateTime}
-                               appointmentStatusClass={appointmentStatusClass}
-                               visible={this.state.visible}
-                               toggleVisibility={this.toggleVisibility}
+      <AppointmentsCardContent htmlId="appointmentsCard-appointmentsCardContent"
+          appointment={appointment}
+          appointmentTypeIcon={appointmentTypeIcon}
+          appointmentDateTime={appointmentDateTime}
+          appointmentStatusClass={appointmentStatusClass}
+          visible={this.state.visible}
+          toggleVisibility={this.toggleVisibility}
       />
-      );
+    );
   }
 
   render() {
     const {
-      id,
+      htmlId,
       appointments,
       emptyText,
       customerName
@@ -89,19 +89,20 @@ class AppointmentsCard extends Component {
 
     const appointmentsCount = appointments.length;
     const headerCounter = (appointmentsCount <= 1) ? "" : "(" + appointmentsCount + ")";
-    const cardContent = (typeof(appointments[0]) === 'undefined') ? emptyText : this.getPrimaryAppointment();
+    const cardContent = (typeof(appointments[0]) === 'undefined') ? emptyText : this.getAppointmentsCardContent();
 
     return (
-      <div id={id}>
+      <div id={htmlId}>
         <Card header={"Appointments " + headerCounter}
             className="appointmentscard"
             actionDropdown={this.appointmentsActions}
+            onClick={this.toggleVisibility}
         >
           {cardContent}
         </Card>
 
         <AppointmentsModal
-          id="appointmentsCard-appointmentsModal"
+          htmlId="appointmentsCard-appointmentsModal"
           customerName={customerName}
           appointments={appointments}
           visible={this.state.visible}
@@ -112,7 +113,7 @@ class AppointmentsCard extends Component {
   }
 }
 AppointmentsCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  htmlId: PropTypes.string.isRequired,
   appointments: PropTypes.arrayOf(PropTypes.shape({
     appointmentId: PropTypes.number,
     time: PropTypes.string,

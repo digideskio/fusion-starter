@@ -1,13 +1,12 @@
 import React, {PropTypes} from 'react';
-import {Modal} from 'react-bootstrap';
+import Modal from 'react-bootstrap/lib/Modal';
 
-const AppointmentsModal = ({id, customerName, appointments, visible, toggleVisibility}) => {
+const AppointmentsModal = ({htmlId, customerName, appointments, visible, toggleVisibility}) => {
   return(
       <Modal dialogClassName="modal-full"
              className="appointmentscard__fullpage"
              show={visible}
              onHide={toggleVisibility}
-             id={id}
       >
         <Modal.Header closeButton>
           <Modal.Title className="display-4">{customerName}</Modal.Title>
@@ -22,9 +21,21 @@ const AppointmentsModal = ({id, customerName, appointments, visible, toggleVisib
 };
 
 AppointmentsModal.propTypes = {
-  id: PropTypes.string.isRequired,
+  htmlId: PropTypes.string.isRequired,
   customerName: PropTypes.string.isRequired,
-  appointments: PropTypes.array.isRequired,
+  appointments: PropTypes.arrayOf(PropTypes.shape({
+    appointmentId: PropTypes.number,
+    time: PropTypes.string,
+    type: PropTypes.string,
+    status: PropTypes.string,
+    vehicle: PropTypes.shape({
+      vehicleId: PropTypes.number,
+      year: PropTypes.number,
+      make: PropTypes.string,
+      model: PropTypes.string,
+      trim: PropTypes.string
+    })
+  })).isRequired,
   visible: PropTypes.bool.isRequired,
   toggleVisibility: PropTypes.func.isRequired
 };

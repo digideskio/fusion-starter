@@ -93,6 +93,11 @@ Card.propTypes = {
 
 const CardDropdownMenu = (props) => {
   const menuObj = props.actionDropdown || [];
+
+  const handleDropdown = (event) => {
+    event.stopPropagation();
+  };
+
   const menuItems = menuObj.map(function(v, key){
     return(
       <MenuItem
@@ -121,6 +126,7 @@ const CardDropdownMenu = (props) => {
           noCaret
           pullRight
           id="dropdown-card-button"
+          onClick={handleDropdown}
         >
           {menuItems}
         </DropdownButton>

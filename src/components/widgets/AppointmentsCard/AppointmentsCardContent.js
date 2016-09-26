@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 
-const AppointmentsCardContent = ({appointment, appointmentTypeIcon, appointmentDateTime, appointmentStatusClass, visible, toggleVisibility}) => {
+const AppointmentsCardContent = ({htmlId, appointment, appointmentTypeIcon, appointmentDateTime, appointmentStatusClass}) => {
   return(
-    <div>
+    <div id={htmlId}>
       <div className="appointmentscard__icon">{appointmentTypeIcon}</div>
       <div className="appointmentscard__details">
         <h5 className="appointmentscard__time">{appointmentDateTime}</h5>
@@ -17,13 +17,11 @@ const AppointmentsCardContent = ({appointment, appointmentTypeIcon, appointmentD
 };
 
 AppointmentsCardContent.propTypes = {
-  id: PropTypes.string.isRequired,
+  htmlId: PropTypes.string.isRequired,
   appointment: PropTypes.object.isRequired,
   appointmentTypeIcon: PropTypes.object,
   appointmentDateTime: PropTypes.string,
-  appointmentStatusClass: PropTypes.string,
-  visible: PropTypes.bool.isRequired,
-  toggleVisibility: PropTypes.func.isRequired
+  appointmentStatusClass: PropTypes.string
 };
 
 

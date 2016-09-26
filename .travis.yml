@@ -3,3 +3,7 @@ node_js:
   - "6"
   - "5"
   - "4"
+  notifications:
+    email:
+      - UITeam@vinsolutions.com
+      - housecor@gmail.com

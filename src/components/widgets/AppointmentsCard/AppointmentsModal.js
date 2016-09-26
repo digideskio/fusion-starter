@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import Modal from 'react-bootstrap/lib/Modal';
+import AppointmentsActivityListContainer from './AppointmentsActivityListContainer';
 
 const AppointmentsModal = ({htmlId, customerName, appointments, visible, toggleVisibility}) => {
   return(
@@ -13,7 +14,9 @@ const AppointmentsModal = ({htmlId, customerName, appointments, visible, toggleV
         </Modal.Header>
         <Modal.Body className="container">
           <div className="appointmentsPage__content">
-            {appointments.status}
+
+            <AppointmentsActivityListContainer appointments={appointments}/>
+
           </div>
         </Modal.Body>
       </Modal>

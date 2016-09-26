@@ -24,26 +24,24 @@ class AppointmentsActivityItem extends Component {
     e.stopPropagation();
   }
 
-  /*
   editActivity = () => {
-    console.log(this.props.appointment.time + ' : EDIT');
+    // edit function
   };
   confirmActivity = () => {
-    console.log(this.props.appointment.time + ' : CONFIRM');
+    // confirm function
   };
   completeActivity = () => {
-    console.log(this.props.appointment.time + ' : COMPLETE');
+    // complete function
   };
   missedActivity = () => {
-    console.log(this.props.appointment.time + ' : MISSED');
+    // missed function
   };
   cancelActivity = () => {
-    console.log(this.props.appointment.time + ' : CANCEL');
+    // cancel function
   };
-  */
 
   render() {
-    const id = this.props.id;
+    const id = this.props.htmlId;
     const appointment = this.props.appointment;
     const icon = {
       'Meeting': <EntypoMan valign />,
@@ -55,9 +53,8 @@ class AppointmentsActivityItem extends Component {
       'Service': <svg viewBox="0 0 18 18" preserveAspectRatio="xMidYmid meet" style={{'display':'inline-block','height':'1em','width':'1em','fill':'currentColor','userSelect':'none','valign':'text-top'}}><g stroke="none" strokeWidth="1" fillRule="evenodd"><g id="icons" transform="translate(-448.000000, -666.000000)"><path d="M454.513082,682.881436 C453.97807,683.4171 453.350374,683.764948 452.62833,683.925536 C451.906285,684.086124 451.224755,684.04556 450.58263,683.804956 L452.828682,681.556169 L452.307544,679.70913 L450.462752,679.186802 L448.2167,681.435589 C447.975833,680.766565 447.935874,680.077538 448.096267,679.36795 C448.256659,678.658362 448.603529,678.036015 449.139096,677.500351 C450.154731,676.456251 451.370718,676.122295 452.788722,676.496815 L458.524007,670.794554 C458.122748,669.375934 458.444089,668.157911 459.486363,667.140483 C460.02082,666.605375 460.649626,666.256972 461.37167,666.096384 C462.093715,665.935796 462.775245,665.975804 463.416815,666.216964 L461.170763,668.465751 L461.692456,670.31279 L463.537248,670.834562 L465.7833,668.585775 C466.024167,669.228127 466.064126,669.911042 465.903733,670.633966 C465.743341,671.356889 465.395361,671.985905 464.860904,672.521013 C464.379726,673.003333 463.804199,673.331177 463.136544,673.505101 C462.467779,673.679025 461.825654,673.685693 461.211278,673.525105 L455.515952,679.227366 C455.890016,680.645986 455.555911,681.864565 454.513082,682.881436" /></g></g></svg>
     };
     const historical = (['Missed','Cancelled','Completed'].indexOf(appointment.status) > -1);
-    //  console.log('is historical: '+ historical);
-
     const appointmentTime = formatDateTime(appointment.time);
+
     return (
       <Panel className={"activityItem" + ((appointment.status === 'Past Due') ? " activityItem--past-due " : "") + ((this.state.activityOpen) ? " activityItem--open" : " activityItem--closed") + ((historical) ? ' activityItem--historical' : '')} onClick={this.openActivity} id={id}>
         <Row>
@@ -115,11 +112,15 @@ class AppointmentsActivityItem extends Component {
 }
 
 AppointmentsActivityItem.propTypes = {
-  id: PropTypes.oneOfType([
+  htmlId: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
   ]).isRequired,
   appointment: PropTypes.shape({
+    appointmentId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
     editors: PropTypes.shape({
       lastUpdatedBy: PropTypes.string,
       createdBy: PropTypes.string,
@@ -127,6 +128,10 @@ AppointmentsActivityItem.propTypes = {
     }).isRequired,
     time: PropTypes.string.isRequired,
     vehicle: PropTypes.shape({
+      vehicleId: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ]).isRequired,
       year: PropTypes.number,
       make: PropTypes.string,
       model: PropTypes.string

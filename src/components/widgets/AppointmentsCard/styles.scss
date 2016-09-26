@@ -4,6 +4,10 @@
       padding-bottom: 0;
       border: 0 none;
     }
+
+    .modal-body {
+      overflow-y: scroll;
+    }
   }
 
   &__icon {

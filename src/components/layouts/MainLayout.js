@@ -4,6 +4,7 @@ import Loading from '../widgets/Loading';
 import CustomerRecord from '../pages/CustomerRecord';
 
 const MainLayout = ({customer, dealerTeam}) => {
+  debugger;
   return (
     <div className=' main-layout'>
       { customer.globalCustomerId ? <CustomerRecord customer={customer} dealerTeam={dealerTeam} /> : <Loading/> }

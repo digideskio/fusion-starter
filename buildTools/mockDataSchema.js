@@ -401,11 +401,6 @@ export const schema = {
               "minimum": 195,
               "maximum": 195
             },
-            "splitSalesRepId": {
-              "type": "number",
-              "minimum": 46,
-              "maximum": 46
-            },
             "managerId": {
               "type": "number",
               "minimum": 124,
@@ -438,9 +433,9 @@ export const schema = {
             },
           }
         },
-        "required": ['salesRepId', 'splitSalesRepId', 'managerId', 'bdAgentId', 'csiAgentId', 'serviceSalesLeadId', 'serviceRepId', 'partsLeadId']
+        "required": ['salesRepId', 'managerId', 'bdAgentId', 'csiAgentId', 'serviceSalesLeadId', 'serviceRepId', 'partsLeadId']
       },
-      "required": ['customerId', 'photo', 'firstName', 'lastName', 'phone', 'email', 'address', 'ebr', 'ebrExpressConsent', 'memo', 'tasks', 'appointments', 'team']
+      "required": ['globalCustomerId', 'photo', 'firstName', 'lastName', 'phone', 'email', 'address', 'ebr', 'ebrExpressConsent', 'memo', 'tasks', 'appointments', 'team']
     }
   },
   "required": ['appointments', 'dealerTeam', 'customer']

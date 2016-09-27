@@ -22,7 +22,7 @@ const CustomerRecord = ({customer, dealerTeam}) => {
 
       <Col sm={12} md={12} lg={12}>
         {/* Tasks */}
-        {/* <Tasks tasks={customer.tasks} className="customerrecord__tasks m-b-md" /> */}
+        {/*<Tasks tasks={customer.tasks} className="customerrecord__tasks m-b-md" /> */}
 
         {/* Cards */}
         <Row className="customerrecord__cards m-b-md">

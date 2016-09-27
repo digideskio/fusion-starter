@@ -4,7 +4,8 @@ import AppointmentsActivityListContainer from './AppointmentsActivityListContain
 
 const AppointmentsModal = ({htmlId, customerName, appointments, visible, toggleVisibility}) => {
   return(
-      <Modal dialogClassName="modal-full"
+      <Modal id={htmlId}
+             dialogClassName="modal-full"
              className="appointmentscard__fullpage"
              show={visible}
              onHide={toggleVisibility}
@@ -14,9 +15,7 @@ const AppointmentsModal = ({htmlId, customerName, appointments, visible, toggleV
         </Modal.Header>
         <Modal.Body className="container">
           <div className="appointmentsPage__content">
-
             <AppointmentsActivityListContainer appointments={appointments}/>
-
           </div>
         </Modal.Body>
       </Modal>

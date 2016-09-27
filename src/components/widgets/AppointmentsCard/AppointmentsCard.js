@@ -61,12 +61,10 @@ class AppointmentsCard extends Component {
     const {
       appointments
     } = this.props;
-
     const appointment = appointments[0];
     const appointmentStatusClass = this.statusClass[appointment.status];
     const appointmentTypeIcon = this.appointmentIcon[appointment.type];
     const appointmentDateTime = formatDateTime(appointment.time);
-
     return(
       <AppointmentsCardContent htmlId="appointmentsCard-appointmentsCardContent"
           appointment={appointment}
@@ -92,23 +90,21 @@ class AppointmentsCard extends Component {
     const cardContent = (typeof(appointments[0]) === 'undefined') ? emptyText : this.getAppointmentsCardContent();
 
     return (
-      <div id={htmlId}>
-        <Card header={"Appointments " + headerCounter}
+        <Card htmlId={htmlId}
+            header={"Appointments " + headerCounter}
             className="appointmentscard"
             actionDropdown={this.appointmentsActions}
             onClick={this.toggleVisibility}
         >
           {cardContent}
+          <AppointmentsModal
+            htmlId="appointmentsCard-appointmentsModal"
+            customerName={customerName}
+            appointments={appointments}
+            visible={this.state.visible}
+            toggleVisibility={this.toggleVisibility}
+          />
         </Card>
-
-        <AppointmentsModal
-          htmlId="appointmentsCard-appointmentsModal"
-          customerName={customerName}
-          appointments={appointments}
-          visible={this.state.visible}
-          toggleVisibility={this.toggleVisibility}
-        />
-      </div>
     );
   }
 }

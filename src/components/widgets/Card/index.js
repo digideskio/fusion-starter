@@ -48,6 +48,7 @@ import CardDropdownMenu from './CardDropdownMenu';
 
 const Card = (props) => {
   const {
+    htmlId,
     header,
     className,
     actionDropdown,
@@ -57,7 +58,11 @@ const Card = (props) => {
   const panelHeader = <div className="card__title">{header}</div>;
 
   return (
-    <Panel className={'card'+((className) ? ' '+className : '')} header={panelHeader} {...other}>
+    <Panel id={htmlId}
+        className={'card'+((className) ? ' '+className : '')}
+        header={panelHeader}
+        {...other}
+    >
       { actionDropdown ?
         <CardDropdownMenu actionDropdown={actionDropdown}/>
         :
@@ -68,6 +73,7 @@ const Card = (props) => {
   );
 };
 Card.propTypes = {
+  htmlId: PropTypes.string.isRequired,
   header: PropTypes.node,
   className: PropTypes.string,
   actionDropdown: React.PropTypes.arrayOf(PropTypes.shape({
